@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup - GalaxiQ</title>
+</head>
+<body>
+    <h2>Signup</h2>
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="signup()">Signup</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+
+    <script src="firebase-config.js"></script>
+    <script>
+        function signup() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert("Signup Successful!");
+                    window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        }
+    </script>
+</body>
+</html>
